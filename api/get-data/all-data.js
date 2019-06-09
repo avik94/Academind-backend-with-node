@@ -4,8 +4,7 @@ const Course = require('../../model/course');
 const RelatedUrl = require('../../model/relatedUrl');
 const Topic = require('../../model/topic');
 
-router.get('/', async(req,res)=>{
-    
+router.get('/', async(req,res)=>{    
     try{
         const topic = await Topic.findAll();
         let final =[];
