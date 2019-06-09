@@ -5,6 +5,7 @@ const sequelize = require('./connection');
 const userRouter = require('./api/user/user');
 const topicRouter = require('./api/topic/topic');
 const courseRouter = require('./api/course/course');
+const getDataRouter = require('./api/get-data/all-data');
 
 const User = require('./model/user');
 const Topic = require('./model/topic');
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 app.use('/user', userRouter);
 app.use('/topic', topicRouter);
 app.use('/course', courseRouter);
+app.use('/data', getDataRouter);
 
 app.get('/database', (req,res)=>{
     try{

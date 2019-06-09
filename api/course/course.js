@@ -5,17 +5,7 @@ const RelatedUrl = require('../../model/relatedUrl');
 const Validator = require('../../validator');
 
 router.post('/', async(req,res)=>{
-    // reqBody = {
-    //     name: req.body.name,
-    //     image: req.body.image,
-    //     date: req.body.date,
-    //     author: req.body.author,
-    //     body: req.body.body,
-    //     videoUrl: req.body.videoUrl,
-    //     udemyUrl: req.body.udemyUrl,
-    //     topic_Id: req.body.topic_Id,
-    //     relatedUrl: []
-    // }
+    
     try{
         reqBody = {
             name: req.body.name,
@@ -31,7 +21,7 @@ router.post('/', async(req,res)=>{
         delete reqBody.udemyUrl
         if(req.body.relatedUrl.length !== 0){
             const validator = await Validator.validateReq(reqBody,{
-                name: "string",image:"string",date: "string",description: "string",author: "string",body:"string",videoUrl:"string",topic_Id: "number"
+                name: "string",image:"string",date: "string",description: "string",author: "string",body:"string",videoUrl:"string",topic_Id: "number"                    
             })
             const relatedUrl = await Validator.validateRelatedUrl(req.body.relatedUrl,{
                 name: "string", image: "string", description: "string", url: "string"
@@ -47,8 +37,9 @@ router.post('/', async(req,res)=>{
             }
             res.status(200).json({msg: "Created successfully"});
         }else{
+            console.log("hello")
             const validator = await Validator.validateReq(reqBody,{
-                name: "string",image:"string",date: "string",author: "string",body:"string",videoUrl:"string",topic_Id: "number"
+                name: "string",image:"string",date: "string",description: "string",author: "string",body:"string",videoUrl:"string",topic_Id: "number"
             })
             reqBody.udemyUrl = req.body.udemyUrl;
             const storeData = await Course.create(reqBody);
@@ -61,7 +52,7 @@ router.post('/', async(req,res)=>{
                 course_id: id
             }
             const storeRelatedUrl = await RelatedUrl.create(urlData);
-            res.status(200).json({msg: "Created successfully"});            
+            res.status(200).json(reqBody);            
         }
     }catch(err){
         res.json({error:err})
