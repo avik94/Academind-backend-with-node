@@ -28,12 +28,12 @@ router.get('/', async(req,res)=>{
                 }     
                 getCourse.push(course);
             }
-            const a = {
+            const convertedBody = {
                 name: item["name"],
                 image: item["image"],
                 course: getCourse
             }
-            final.push(a);
+            final.push(convertedBody);
         }
         res.json(final)
     }catch(e){
