@@ -17,7 +17,13 @@ router.get('/', async(req,res)=>{
                 let course = {
                         name: courseItem["name"],
                         image: courseItem["image"],
-                        relatedUrl: relatedUrl.map(el=>{
+                        date: courseItem["date"],
+                        description:courseItem["description"],
+                        author: courseItem["author"],
+                        videoUrl: courseItem["videoUrl"],
+                        body: courseItem["body"],
+                        udemyUrl: courseItem["udemyUrl"],
+                        relatedCourse: relatedUrl.map(el=>{
                             return {
                                 name: el['name'],
                                 image: el['image'],
@@ -25,7 +31,7 @@ router.get('/', async(req,res)=>{
                                 url: el['url']
                             }
                         })
-                }     
+                }
                 getCourse.push(course);
             }
             const convertedBody = {

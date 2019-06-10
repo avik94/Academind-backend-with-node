@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const sequelize = require('./connection');
 
 const userRouter = require('./api/user/user');
@@ -12,6 +13,7 @@ const Topic = require('./model/topic');
 const Course = require('./model/course');
 const RelatedUrl = require('./model/relatedUrl');
 const app = express();
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended:false }));
 app.use(bodyParser.json());
 

@@ -52,7 +52,7 @@ router.post('/', async(req,res)=>{
                 course_id: id
             }
             const storeRelatedUrl = await RelatedUrl.create(urlData);
-            res.status(200).json(reqBody);            
+            res.status(200).json({msg: "Created successfully"});            
         }
     }catch(err){
         res.json({error:err})
